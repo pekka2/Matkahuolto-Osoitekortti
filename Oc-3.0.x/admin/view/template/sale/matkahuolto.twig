@@ -1,0 +1,669 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-shipping" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-matkahuolto" class="form-horizontal">
+          <div class="form-group">
+          <label style="width:80%;margin-left:5%;">{{ text_description }}</label>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-cost">{{ entry_user_id }}</label>
+            <div class="col-sm-10">
+            <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_user_id]" value="{{ matkahuolto_ticket_user_id }}"  class="form-control"/>
+                  {% if error_matkahuolto_ticket_user_id %}
+                  <div class="text-danger">{{ error_matkahuolto_ticket_user_id }}</div>
+                  {% endif %}
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-cost">{{ entry_password }}</label>
+            <div class="col-sm-10"> 
+            <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_password]" value="{{ matkahuolto_ticket_password }}" class="form-control"/>
+                  {% if error_matkahuolto_ticket_password %}
+                  <div class="text-danger">{{ error_matkahuolto_ticket_password }}</div>
+                  {% endif %}
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-sender_id">{{ entry_sender_id }}</label>
+            <div class="col-sm-10">
+            <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_id]" value="{{ matkahuolto_ticket_sender_id }}" class="form-control"/>
+                  {% if error_matkahuolto_ticket_sender_id %}
+                  <div class="text-danger">{{ error_matkahuolto_ticket_sender_id }}</div>
+                  {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-name">{{ entry_sender_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_name]" value="{{ matkahuolto_ticket_sender_name }}" placeholder="{{ entry_sender_name }}" id="input-sender-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-name">{{ entry_sender_name_2 }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="sender_name2" value="{{ sender_name2 }}" placeholder="{{ entry_sender_name_2 }}" id="input-sender-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-address">{{ entry_sender_address }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_address]" value="{{ matkahuolto_ticket_sender_address }}" placeholder="{{ entry_sender_address }}" id="input-sender-address" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-postal">{{ entry_sender_postal }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_postal]" value="{{ matkahuolto_ticket_sender_postal }}" placeholder="{{ entry_sender_postal }}" id="input-sender-postal" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-city">{{ entry_sender_city }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_city]" value="{{ matkahuolto_ticket_sender_city }}" placeholder="{{ entry_sender_city }}" id="input-sender-city" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-country">{{ entry_sender_country }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_country]" value="{{ matkahuolto_ticket_sender_country }}" placeholder="{{ entry_sender_country }}" id="input-sender-country" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-contact-name">{{ entry_sender_contact_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_contact_name]" value="{{ matkahuolto_ticket_sender_contact_name }}" placeholder="{{ entry_sender_contact_name }}" id="input-sender-contact-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-contact-number">{{ entry_sender_contact_number }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_contact_number]" value="{{ matkahuolto_ticket_sender_contact_number }}" placeholder="{{ entry_sender_contact_number }}" id="input-sender-contact-number" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-email">{{ entry_sender_email }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_email]" value="{{ matkahuolto_ticket_sender_email }}" placeholder="{{ entry_sender_email }}" id="input-sender-email" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-sender-reference">{{ entry_sender_reference }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_sender_reference]" value="{{ matkahuolto_ticket_sender_reference }}" placeholder="{{ entry_sender_refrence }}" id="input-sender-reference" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-departure-place-code">{{ entry_departure_place_code }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_departure_place_code]" value="{{ matkahuolto_ticket_departure_place_code }}" placeholder="{{ entry_departure_place_code }}" id="input-departure-place-code" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-departure-place-name">{{ entry_departure_place_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="matkahuolto_ticket[matkahuolto_ticket_departure_place_name]" value="{{ matkahuolto_ticket_departure_place_name }}" placeholder="{{ entry_departure_place_name }}" id="input-departure-place-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-shipment-type">{{ entry_shipment_type }}</label>
+            <div class="col-sm-10">
+              <select name="shipment_type" id="input-shipment-type" class="form-control">
+                <option value="0">{{ text_none }}</option>
+                {% for shipment in shipment_types %}
+                {% if shipment.type == shipment_type %}
+                <option value="{{ shipment.type }}" selected="selected">{{ shipment.name }}</option>
+                {% else %}
+                <option value="{{ shipment.type }}">{{ shipment.name }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+                  {% if error_shipment_type %}
+                  <div class="text-danger">{{ error_shipment_type }}</div>
+                  {% endif %}
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-message-type">{{ entry_message_type }}</label>
+            <div class="col-sm-10">
+              <select name="message_type" id="message-type" class="form-control">
+                <option value="0">{{ text_none }}</option>
+                {% for message in message_types %}
+                {% if message.type ==  message_type %}
+                <option value="{{ message.type }}" selected="selected">{{ message.name }}</option>
+                {% else %}
+                <option value="{{ message.type }}">{{ message.name }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+              {% if error_message_type %}
+                  <div class="text-danger">{{ error_message_type }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-version">{{ entry_version }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="version" value="{{ version }}" placeholder="{{ entry_version }}" id="input-version" class="form-control" />
+              {% if error_version %}
+                  <div class="text-danger">{{ error_version }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-packages">{{ entry_packages }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="packages" value="{{ packages }}" placeholder="{{ entry_packages }}" id="input-packages" class="form-control" />
+              {% if error_packages %}
+                  <div class="text-danger">{{ error_packages }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-package-id">{{ entry_package_id }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="package_id[1]" value="{{ package_id[1] }}" placeholder="{{ entry_package_id }}" id="input-package-id" class="form-control" />
+            </div>
+          </div>
+          <div id="package-row"></div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-volume">{{ entry_volume }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="volume" value="{{ volume }}" placeholder="{{ entry_volume }}" id="input-volume" class="form-control" />
+              {% if error_volume %}
+                  <div class="text-danger">{{ error_volume }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-weight">{{ entry_weight }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="weight" value="{{ weight }}" placeholder="{{ entry_volume }}" id="input-weight" class="form-control" />
+              {% if error_weight %}
+                  <div class="text-danger">{{ error_weight }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-receiver-id">{{ entry_receiver_id }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_id" value="{{ receiver_id }}" placeholder="{{ entry_receiver_id }}" id="input-receiver-id" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-receiver-name">{{ entry_receiver_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_name" value="{{ receiver_name }}" placeholder="{{ entry_receiver_name }}" id="input-receiver-name" class="form-control" />
+              {% if error_receiver_name %}
+                  <div class="text-danger">{{ error_receiver_name }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-reveiver-name2">{{ entry_receiver_name2 }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_name2" value="{{ receiver_name2 }}" placeholder="{{ entry_receiver_name2 }}" id="input-receiver-name2" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-receiver-address">{{ entry_receiver_address }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_address" value="{{ receiver_address }}" placeholder="{{ entry_receiver_address }}" id="input-receiver-address" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-receiver-postcode">{{ entry_receiver_postal }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_postal" value="{{ receiver_postal }}" placeholder="{{ entry_receiver_postal }}" id="input-receiver-postcode" class="form-control" />
+              {% if error_receiver_postal %}
+                  <div class="text-danger">{{ error_receiver_postal }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-receiver-city">{{ entry_receiver_city }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_city" value="{{ receiver_city }}" placeholder="{{ entry_receiver_city }}" id="input-receiver-city" class="form-control" />
+              {% if error_receiver_city %}
+                  <div class="text-danger">{{ error_receiver_city }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-receiver-country">{{ entry_receiver_country }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_country" value="{{ receiver_country }}" placeholder="{{ entry_receiver_country }}" id="input-receiver-country" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-receiver-contact-name">{{ entry_receiver_contact_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_contact_name" value="{{ receiver_contact_name }}" placeholder="{{ entry_receiver_contact_name }}" id="input-receiver-contact-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-receiver-contact-number">{{ entry_receiver_contact_number }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_contact_number" value="{{ receiver_contact_number }}" placeholder="{{ entry_receiver_contact_number }}" id="input-receiver-contact-number" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-receiver-email">{{ entry_receiver_email }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_email" value="{{ receiver_email }}" placeholder="{{ entry_receiver_email }}" id="input-receiver-email" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-receiver-country">{{ entry_receiver_reference }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="receiver_reference" value="{{ receiver_reference }}" placeholder="{{ entry_receiver_reference }}" id="input-receiver-feference" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-destination-place-code">{{ entry_destination_place_code }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="destination_place_code" value="{{ destination_place_code }}" placeholder="{{ entry_destination_place_code }}" id="input-destination-place-code" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-destination-place-name">{{ entry_destination_place_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="destination_place_name" value="{{ destination_place_name }}" placeholder="{{ entry_destination_place_name }}" id="input-destination-place-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-remarks">{{ entry_remarks }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="remarks" value="{{ remarks }}" placeholder="{{ entry_remarks }}" id="input-remarks" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-payer-code">{{ entry_payer_code }}</label>
+            <div class="col-sm-10">
+              <select name="payer_code" id="input-payer-code" class="form-control">
+                <option value="0">{{ text_none }}</option>
+                {% for payercode in payer_codes %}
+                {% if payercode.code == payer_code %}
+                <option value="{{ payercode.code }}" selected="selected">{{ payercode.name }}</option>
+                {% else %}
+                <option value="{{ payercode.code }}">{{ payercode.name }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-payer-id">{{ entry_payer_id }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="payer_id" value="{{ payer_id }}" placeholder="{{ entry_payer_id }}" id="input-payer-id" class="form-control" />
+            </div>
+          </div>
+          <div class="payer-info">
+          </div>
+          <div class="form-group required">
+            <label class="col-sm-2 control-label" for="input-payer-code">{{ entry_products }}</label>
+            <div class="col-sm-10">
+              <select name="product_code" id="input-product" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% for product in products %}
+                {% if product.code == product_code %}
+                <option value="{{ product.code }}" selected="selected">{{ product.name }}</option>
+                {% else %}
+                <option value="{{ product.code }}">{{ product.name }}</option>
+                {% endif %}
+                {% endfor %}
+              </select>
+              {% if error_product_code %}
+                  <div class="text-danger">{{ error_product_code }}</div>
+              {% endif %}
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-product-name">{{ entry_product_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="product_name" value="{{ product_name }}" placeholder="{{ entry_product_name }}" id="input-product-name" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-pickup">{{ entry_pickup }}</label>
+            <div class="col-sm-10">
+              <select name="pickup" id="input-pickup" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% for pickups in pickup_product %}
+                   {% if pickup == pickups.key %}
+                      <option value="{{ pickup.key }}" selected="selected">{{ pickups.name }}</option>
+                   {% else %}
+                      <option value="{{ pickups.key }}">{{ pickups.name }}</option>
+                   {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-pickup-payer">{{ entry_pickup_payer }}</label>
+            <div class="col-sm-10">
+              <select name="pickup_payer" id="input-pickup-payer" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% for payer in pickup_payer %}
+                      <option value="{{ payer.key }}">{{ payer.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-pickup-remark">{{ entry_pickup_remark }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="pickup_remark" value="{{ pickup_remark }}" placeholder="{{ entry_pickup_remark }}" id="input-pickup-remark" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-delivery">{{ entry_delivery }}</label>
+            <div class="col-sm-10">
+              <select name="delivery" id="input-delivery" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% for delivery in delivery_product %}
+                   {% if delivery == delivery.key %}
+                      <option value="{{ delivery.key }}" selected="selected">{{ delivery.name }}</option>
+                   {% else %}
+                      <option value="{{ delivery.key }}">{{ delivery.name }}</option>
+                   {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-delivery-payer">{{ entry_delivery_payer }}</label>
+            <div class="col-sm-10">
+              <select name="delivery_payer" id="input-delivery-payer" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% for payer in delivery_payer %}
+                      <option value="{{ payer.key }}">{{ payer.name }}</option>
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-delivery-remark">{{ entry_delivery_remark }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="delivery_remark" value="{{ delivery_remark }}" placeholder="{{ entry_delivery_remark }}" id="input-delivery-remark" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cod-sum">{{ entry_cod_sum }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="cod_sum" value="{{ cod_sum }}" placeholder="{{ entry_cod_sum }}" id="input-cod-sum" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cod-currency">{{ entry_cod_currency }}</label>
+            <div class="col-sm-10">
+              <select name="cod_currency" id="input-cod-currency" class="form-control">
+                <option value="">{{ text_none }}</option>
+                <option value="EUR">Euro</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cod-iban">{{ entry_cod_iban }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="cod_iban" value="{{ cod_iban }}" placeholder="{{ entry_cod_iban }}" id="input-cod-bic" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cod-bic">{{ entry_cod_bic }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="cod_bic" value="{{ cod_bic }}" placeholder="{{ entry_cod_bic }}" id="input-cod-bic" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-cod-reference">{{ entry_cod_reference }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="cod_reference" value="{{ cod_reference }}" placeholder="{{ entry_cod_reference }}" id="input-cod-reference" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-goods">{{ entry_goods }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="goods" value="{{ goods }}" placeholder="{{ entry_goods }}" id="input-goods" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-handling">{{ entry_special_handling }}</label>
+            <div class="col-sm-10">
+              <select name="special_handling" id="input-handling" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% for handling in special_handling %}
+                  <option value="{{ handling.key }}">{{ handling.name }}</option>
+                {% endfor %}
+              </select>
+              </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-vak-code">{{ entry_vak_code }}</label>
+            <div class="col-sm-10">
+              <select name="vak_code" id="input-vak-code" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% for vak in vak_codes %}
+                   {% if vak.key == vak_code %}
+                     <option value="{{ vak.key }}" selected="selected">{{ vak.name }}</option>
+                   {% else %}
+                     <option value="{{ vak.key }}">{{ vak.name }}</option>
+                   {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-vak-description">{{ entry_vak_description }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="vak_description" value="{{ vak_description }}" placeholder="{{ entry_vak_description }}" id="input-vak-description" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-doc-type">{{ entry_doc_type }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="doc_type" value="{{ doc_type }}" placeholder="{{ entry_doc_type }}" id="input-doc-type" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-handover">{{ entry_handover }}</label>
+            <div class="col-sm-10">
+              <select name="special_handover" id="input-handover" class="form-control">
+                <option value="">{{ text_none }}</option>
+                {% if special_handover == 'Y' %}
+                   <option value="Y" selected="selected">Kyllä</option>
+                {% else %}
+                   <option value="Y">Kyllä</option>
+                {% endif %}
+                <option value="N">Ei</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-handover-remark-1">{{ entry_handover_remark_1 }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="handover_remark_1" value="{{ handover_remark_1 }}" placeholder="{{ entry_handover_remark_1 }}" id="input-handover-remark-1" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-handover-remark-2">{{ entry_handover_remark_2 }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="handover_remark_2" value="{{ handover_remark_2 }}" placeholder="{{ entry_handover_remark_2 }}" id="input-handover-remark-2" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-handover-remark-3">{{ entry_handover_remark_3 }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="handover_remark_3" value="{{ handover_remark_3 }}" placeholder="{{ entry_handover_remark_3 }}" id="input-handover-remark-3" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-package-id">{{ entry_package_id }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="package_idx" value="{{ package_idx }}" placeholder="{{ entry_package_id }}" id="input-package-id" class="form-control" />
+            </div>
+          </div>
+
+
+
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript"><!--
+$('input[name=\'packages\']').ready(function() {
+   packages = $('input[name=\'packages\']').val();
+
+    pkg = '';
+    if(packages > 1){
+
+      for(i = 2; i<=packages; i++){
+          pkg += '<div class="form-group">';
+          pkg += ' <label class="col-sm-2 control-label" for="input-package-id">{{ entry_package_id }}</label>';
+          pkg += '  <div class="col-sm-10">';
+          pkg += '   <input type="text" name="package_id[' + i + ']" value="" placeholder="{{ entry_package_id }}" id="input-package-id" class="form-control" />';
+          pkg += '   </div>';
+          pkg += ' </div>';
+
+      }
+       $('#package-row').html(pkg);
+    }
+
+});
+$('input[name=\'packages\']').on('change', function() {
+   pcs = $('input[name=\'packages\']').val();
+
+    pkg = '';
+    if(pcs > 1){
+      for(var i = 2; i <=pcs; i++){
+          pkg += '<div class="form-group">';
+          pkg += ' <label class="col-sm-2 control-label" for="input-package-id">{{ entry_package_id }}</label>';
+          pkg += '  <div class="col-sm-10">';
+          pkg += '   <input type="text" name="package_id[' + i + ']" value="" placeholder="{{ entry_package_id }}" id="input-package-id" class="form-control" />';
+          pkg += '   </div>';
+          pkg += ' </div>';
+      }
+       $('#package-row').html(pkg);
+    }
+
+});
+// Disable the tabs
+</script>
+<script type="text/javascript"><!--
+$('select[name=\'payer_code\']').on('change', function() {
+   payer = $('select[name=\'payer_code\'] option:selected').val();
+
+   type = '';
+
+   if(payer == 'S'){
+     type = 'sender';
+   }
+   if(payer == 'R'){
+     type = 'receiver';
+   }
+    if(payer !='O'){
+      name = $('#form-matkahuolto input[name=\'' + type + '_name\']').val();
+      address = $('#form-matkahuolto input[name=\'' + type + '_address\']').val();
+      postcode = $('#form-matkahuolto input[name=\'' + type + '_postal\']').val();
+      city = $('#form-matkahuolto input[name=\'' + type + '_city\']').val();
+      country = $('#form-matkahuolto input[name=\'' + type + '_country\']').val();
+      contact_name = $('#form-matkahuolto input[name=\'' + type + '_contact_name\']').val();
+      contact_number = $('#form-matkahuolto input[name=\'' + type + '_contact_number\']').val();
+      email = $('#form-matkahuolto input[name=\'' + type + '_email\']').val();
+      reference = $('#form-matkahuolto input[name=\'' + type + '_reference\']').val();
+    }
+    if(payer == 'O'){
+      name = '';
+      address = '';
+      postcode = '';
+      city = '';
+      country = '';
+      contact_name = '';
+      contact_number = '';
+      email = '';
+      reference = '';
+    }
+    
+    html = '    <div class="form-group">';
+    html += '     <label class="col-sm-2 control-label" for="input-payer-name">{{ entry_payer_name }}</label>' + "\r\n";
+    html += '     <div class="col-sm-10">' + "\r\n";
+    html += '     <input type="text" name="payer_name" value="' + name + '" placeholder="{{ entry_receiver_name }}" id="input-payer-name" class="form-control" />';
+    html += '     </div></div>';
+    html += '       <div class="form-group">';
+    html += '         <label class="col-sm-2 control-label" for="input-payer-address">{{ entry_payer_address }}</label>';
+    html += '         <div class="col-sm-10">';
+    html += '           <input type="text" name="payer_address" value="' + address + '" placeholder="{{ entry_payer_address }}" id="input-payer-address" class="form-control" />';
+    html += '         </div>';
+    html += '        </div>';
+    html += '       <div class="form-group">';
+    html += '         <label class="col-sm-2 control-label" for="input-payer-postcode">{{ entry_payer_postal }}</label>';
+    html += '         <div class="col-sm-10">';
+    html += '           <input type="text" name="payer_postal" value="' + postcode + '" placeholder="{{ entry_payer_postal }}" id="input-payer-postcode" class="form-control" />';
+    html += '         </div>';
+    html += '       </div>';
+    html += '       <div class="form-group">';
+    html += '         <label class="col-sm-2 control-label" for="input-payer-city">{{ entry_payer_city }}</label>';
+    html += '         <div class="col-sm-10">';
+    html += '           <input type="text" name="payer_city" value="' + city + '" placeholder="{{ entry_payer_city }}" id="input-payer-city" class="form-control" />';
+    html += '         </div>';
+    html += '       </div>';
+    html += '       <div class="form-group">';
+    html += '         <label class="col-sm-2 control-label" for="input-payer-country">{{ entry_payer_country }}</label>';
+    html += '         <div class="col-sm-10">';
+    html += '           <input type="text" name="payer_country" value="' + country + '" placeholder="{{ entry_payer_country }}" id="input-payer-country" class="form-control" />';
+    html += '        </div>';
+    html += '        </div>';
+    html += '      <div class="form-group required">';
+    html += '        <label class="col-sm-2 control-label" for="input-payer-contact-name">{{ entry_payer_contact_name }}</label>';
+    html += '        <div class="col-sm-10">';
+    html += '          <input type="text" name="payer_contact_name" value="' + contact_name + '" placeholder="{{ entry_payer_contact_name }}" id="input-payer-contact-name" class="form-control" />';
+    html += '        </div>';
+    html += '      </div>';
+    html += '      <div class="form-group required">';
+    html += '        <label class="col-sm-2 control-label" for="input-payer-contact-number">{{ entry_payer_contact_number }}</label>';
+    html += '        <div class="col-sm-10">';
+    html += '          <input type="text" name="payer_contact_number" value="' + contact_number + '" placeholder="{{ entry_payer_contact_number }}" id="input-payer-contact-number" class="form-control" />';
+    html += '         </div>';
+    html += '      </div>';
+    html += '      <div class="form-group required">';
+    html += '        <label class="col-sm-2 control-label" for="input-payer-email">{{ entry_payer_email }}</label>';
+    html += '        <div class="col-sm-10">';
+    html += '         <input type="text" name="payer_email" value="' + email + '" placeholder="{{ entry_sender_email }}" id="input-payer-email" class="form-control" />';
+    html += '       </div>';
+    html += '      </div>';
+    html += '      <div class="form-group required">';
+    html += '        <label class="col-sm-2 control-label" for="input-payer-reference">{{ entry_payer_reference }}</label>';
+    html += '        <div class="col-sm-10">';
+    html += '          <input type="text" name="payer_reference" value="' + reference + '" placeholder="{{ entry_payer_reference }}" id="input-sender-reference" class="form-control" />';
+    html += '        </div>';
+    html += '       </div>';
+
+    $('.payer-info').html(html);
+});
+// Disable the tabs
+</script>
+{{ footer }} 
