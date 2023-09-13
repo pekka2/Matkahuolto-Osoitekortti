@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modification>
+<version><![CDATA[1.2]]></version>
+<author><![CDATA[peku]]></author>
+<name>Matkahuolto Button</name>
+<code>matkahuolto</code>
+<link>http://www.pm-netti.com/</link>  
+<file path="admin/controller/sale/order.php">
+<operation>
+<search><![CDATA[$data['date_added']]></search>
+<add position="before"><![CDATA[
+		    if(!empty($order_info['shipping_code'])){
+			   $exp = explode(".", $order_info['shipping_code']);
+
+			   if($exp[0] == 'matkahuolto' || $exp[0] == 'mh_rahti' || $exp[0] == 'mh_xxs'){
+				   $data['matkahuolto'] =  $this->url->link('sale/matkahuolto', 'token=' . $this->session->data['token'] . '&order_id=' . (int)$this->request->get['order_id'] . $url, true);
+			   } else {
+			   	   $data['matkahuolto'] = '';
+			   }
+		    } else {
+			   	   $data['matkahuolto'] = '';
+	        }
+
+	        $data['button_matkahuolto'] = $this->language->get('button_matkahuolto');
+]]></add>
+</operation>
+</file>
+<file path="admin/language/*/sale/order.php">
+<operation>
+<search><![CDATA[$_['column_weight']]]></search>
+<add position="after"><![CDATA[
+
+// Button
+$_['button_matkahuolto']    = 'Matkahuollon osoitekortti';]]></add>
+</operation>
+</file> 
+<file path="admin/view/template/sale/order_info.tpl">
+<operation>
+<search><![CDATA[<div class="pull-right"><a href="<?php echo $invoice; ?>]]></search>
+<add position="replace"><![CDATA[<div class="pull-right"><?php if($matkahuolto){?><a href="<?php echo $matkahuolto;?>" target="_blank" data-toggle="tooltip" title="<?php echo $button_matkahuolto;?>" class="btn btn-primary"><i class="fa fa-bus"></i></a><?php }?><a href="<?php echo $invoice; ?>]]></add>
+</operation>
+</file>
+</modification>
+
