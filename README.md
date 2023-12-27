@@ -1,5 +1,6 @@
 # Matkahuolto-Osoitekortti
-Opencart laajennus Matkahuolto tomitustavan laajennus suomalaisiin verkkokauppoihin
+Opencart laajennus.
+Matkahuolto tomitustavan laajennus suomalaisiin verkkokauppoihin.
 
 Ominaisuudet:<br/>
 Sopii Opencart versioihin 2.3.0.2 ja 3.0.x<br>
